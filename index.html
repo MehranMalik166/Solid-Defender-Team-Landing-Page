@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solid Defenders - Burhanpur IPL Cricket Franchise</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="style.css">
+    <style>
+     
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+   <!-- Navigation -->
+<nav class="sticky top-0 z-50 bg-transparent backdrop-blur-md border-b border-yellow-600/30">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+        <a href="#">     
+        <div class="flex items-center gap-2 sm:gap-3">
+    <i class="fas fa-eagle text-lg sm:text-2xl text-yellow-600"></i>
+
+    <img src="solidLogo.png"
+         alt="Solid Defenders Logo"
+         class="h-10 w-10 sm:h-14 sm:w-14 rounded-full object-contain">
+
+    <span class="text-sm sm:text-xl md:text-2xl font-black tracking-tight bg-gradient-to-r from-white via-yellow-200 to-yellow-500 bg-clip-text text-transparent">
+        SOLID DEFENDERS
+    </span>
+</div>
+        </a>
+        
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex gap-8">
+            <a href="#auction" class="text-white hover:text-yellow-500 transition font-medium">Auction</a>
+            <a href="#squad" class="text-white hover:text-yellow-500 transition font-medium">Squad</a>
+            <a href="#stats" class="text-white hover:text-yellow-500 transition font-medium">Stats</a>
+            <a href="#matches" class="text-white hover:text-yellow-500 transition font-medium">Matches</a>
+            <a href="#join" class="text-white hover:text-yellow-500 transition font-medium">Join</a>
+        </div>
+        
+      <!-- <div class="flex items-center gap-4">
+            <!-- Theme Toggle Buttons -->
+            <div class="hidden sm:flex theme-toggle-container flex gap-1 bg-black/50 rounded-full p-1">
+               <!-- <button class="theme-btn bg-yellow-600 text-white px-3 py-1 rounded-full text-sm" id="darkThemeBtn">
+                    <i class="fas fa-moon text-sm"></i> <span class="hidden sm:inline">Dark</span>
+                </button> -->
+                <button onclick="scrollToSection('join')" class="theme-btn bg-transparent text-gray-300 px-3 py-1 rounded-full text-sm bg-yellow-600 hover:bg-transparent">
+                    <i class="fas fa-crown text-sm"></i> <span class="hidden sm:inline">Join Us</span>
+                </button>
+            </div> 
+            
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobileMenuBtn" class="md:hidden text-yellow-500 focus:outline-none z-50" aria-label="Toggle Menu">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+         </div>  
+    </div>
+    
+    <!-- Mobile Menu Panel -->
+    <div id="mobileMenu" class="hidden md:hidden fixed top-[72px] left-0 right-0 bg-black/95 backdrop-blur-lg p-6 flex-col gap-3 border-b border-yellow-600/30 z-40 shadow-2xl">
+        <a href="#auction" class="text-white text-lg py-3 px-4 hover:bg-yellow-600/20 rounded-lg transition font-medium block">🏏 Auction</a>
+        <a href="#squad" class="text-white text-lg py-3 px-4 hover:bg-yellow-600/20 rounded-lg transition font-medium block">👥 Squad</a>
+        <a href="#stats" class="text-white text-lg py-3 px-4 hover:bg-yellow-600/20 rounded-lg transition font-medium block">📊 Stats</a>
+        <a href="#matches" class="text-white text-lg py-3 px-4 hover:bg-yellow-600/20 rounded-lg transition font-medium block">🏆 Matches</a>
+        <a href="#join" class="text-white text-lg py-3 px-4 hover:bg-yellow-600/20 rounded-lg transition font-medium block">❤️ Join</a>
+    </div>
+</nav>
+
+<script>
+    (function() {
+        // Wait for DOM to be ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initMobileMenu);
+        } else {
+            initMobileMenu();
+        }
+        
+        function initMobileMenu() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            if (!mobileMenuBtn || !mobileMenu) {
+                console.error('Mobile menu elements not found');
+                return;
+            }
+            
+            // Toggle menu function
+            function toggleMobileMenu() {
+                if (mobileMenu.classList.contains('hidden')) {
+                    // Open menu
+                    mobileMenu.classList.remove('hidden');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-times text-2xl"></i>';
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    // Close menu
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars text-2xl"></i>';
+                    document.body.style.overflow = '';
+                }
+            }
+            
+            // Close menu function
+            function closeMobileMenu() {
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars text-2xl"></i>';
+                    document.body.style.overflow = '';
+                }
+            }
+            
+            // Add click event to toggle button
+            mobileMenuBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                toggleMobileMenu();
+            });
+            
+            // Close menu when clicking on any mobile nav link
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                    closeMobileMenu();
+                });
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target) && !mobileMenu.classList.contains('hidden')) {
+                    closeMobileMenu();
+                }
+            });
+            
+            // Close menu on window resize (if switching to desktop view)
+            window.addEventListener('resize', function() {
+                if (window.innerWidth >= 768 && !mobileMenu.classList.contains('hidden')) {
+                    closeMobileMenu();
+                }
+            });
+        }
+    })();
+</script>
+
+<style>
+    /* Mobile menu animation */
+
+    /* Default (270px–350px) → small */
+.logo-img {
+    width: 50px;
+    height: 50px;
+}
+
+.logo-text {
+    font-size: 16px;
+}
+
+.eagle-icon {
+    font-size: 18px;
+}
+
+
+/* 350px – 400px → thoda bada */
+@media (min-width: 350px) and (max-width: 400px) {
+    .logo-img {
+        width: 70px;
+        height: 70px;
+    }
+
+    .logo-text {
+        font-size: 24px;
+    }
+
+    .eagle-icon {
+        font-size: 22px;
+    }
+}
+    #mobileMenu {
+        transition: all 0.3s ease-in-out;
+        transform-origin: top;
+    }
+    #mobileMenu.hidden {
+        display: none;
+    }
+    #mobileMenu:not(.hidden) {
+        display: flex;
+        animation: slideDown 0.3s ease-out;
+    }
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+    <!-- Hero Section -->
+    <section class="hero-bg min-h-screen flex items-center justify-center px-4 py-20 relative">
+        <div class="hero-content max-w-6xl mx-auto text-center">
+            <div class="mb-6">
+                <span class="inline-block px-4 py-2 bg-yellow-600/20 border border-yellow-600/50 rounded-full text-yellow-500 text-sm font-semibold uppercase tracking-wide">
+                    Burhanpur IPL • Season 1
+                </span>
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-black mb-6 gradient-text leading-tight">
+                Eagles Rise to Defend<br>With Strength & Honor
+            </h1>
+            
+            <p class="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto">
+                <span class="font-bold text-white">15 Warriors.</span> <span class="text-yellow-600">One Kingdom.</span><br>
+                Strategic selections, unstoppable defense, championship glory.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-6 justify-center mb-16">
+                <button class="btn-primary text-lg" onclick="scrollToSection('squad')">
+                    <i class="fas fa-users mr-2"></i> View Squad
+                </button>
+                <button class="btn-secondary text-lg" onclick="scrollToSection('join')">
+                    <i class="fas fa-heart mr-2"></i> Join Fans
+                </button>
+            </div>
+
+            <div class="grid grid-cols-3 gap-4 md:gap-8 max-w-2xl mx-auto mt-16 pt-16 border-t border-red-500/20">
+                <div class="glow-effect">
+                    <div class="stats-number text-3xl md:text-4xl">15</div>
+                    <p class="text-gray-400 text-sm md:text-base mt-2">Elite Players</p>
+                </div>
+                <div class="glow-effect">
+                    <div class="stats-number text-3xl md:text-4xl">0</div>
+                    <p class="text-gray-400 text-sm md:text-base mt-2">Season Matches</p>
+                </div>
+                <div class="glow-effect">
+                    <div class="stats-number text-3xl md:text-4xl">1</div>
+                    <p class="text-gray-400 text-sm md:text-base mt-2">Dream</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Animated Background Elements -->
+        <div class="absolute top-20 right-10 w-96 h-96 bg-red-500/5 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute bottom-20 left-10 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+    </section>
+
+    <!-- Auction Highlights -->
+    <section id="auction" class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-4xl md:text-5xl font-black mb-4">
+                    Auction <span class="gradient-text">Highlights</span>
+                </h2>
+                <p class="text-gray-400 text-lg">15 Warriors Selected for Season 1</p>
+                <div class="divider"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 scroll-reveal">
+                <div class="stats-card group">
+                    <i class="fas fa-users text-4xl mb-4 opacity-80 drop-shadow-[0_0_15px_rgba(255,255,255,0.9)] 
+group-hover:scale-110 transition duration-300"></i>
+                    <div class="stats-number">15</div>
+                    <p class="text-yellow-100 mt-2 font-semibold">Total Players Acquired</p>
+                    <p class="text-yellow-100/70 text-sm mt-1">Local & Emerging Talent</p>
+                </div>
+
+              <!-- Owner & Co-Owners Card - Corrected Version -->
+<div class="stats-card group bg-gradient-to-br from-gray-900 to-black rounded-2xl p-6 text-center border border-gray-800 shadow-xl transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-red-900/30" style="animation-delay: 0.2s;">
+    
+    <!-- Crown Icon -->
+    <i class="fas fa-crown text-4xl mb-4 text-yellow-500 opacity-80 drop-shadow-[0_0_15px_rgba(255,255,255,0.9)] 
+group-hover:scale-110 transition duration-300"></i>
+    
+    <!-- Owner Section -->
+    <div class="mb-4 pb-3 border-b border-gray-700">
+        <div class="text-2xl font-black text-yellow-400">HUZAIF</div>
+        <p class="text-yellow-100/80 text-sm font-semibold mt-1">⭐ OWNER ⭐</p>
+        <p class="text-gray-400 text-xs"></p>
+    </div>
+    
+    <!-- Co-Owners Section -->
+    <div>
+        <div class="text-xs text-gray-400 uppercase tracking-wider mb-2">Co-Owners</div>
+        <div class="flex flex-col gap-2">
+            <div>
+                <div class="text-xl font-bold text-red-400">ALBASH</div>
+                <p class="text-gray-400 text-lg">&</p>
+            </div>
+            <div>
+                <div class="text-xl font-bold text-red-400">TOHID KHAN</div>
+                <p class="text-gray-400 text-xs"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+                <div class="stats-card group" style="animation-delay: 0.4s;">
+                 <i class="fas fa-star text-5xl mb-4 text-white 
+drop-shadow-[0_0_15px_rgba(255,255,255,0.9)] 
+group-hover:scale-110 transition duration-300"></i> 
+<!-- <div class="text-3xl mb-4 text-white ">ICON</div> -->
+<p class="text-white text-sm font-bold mt-1 tracking-wider">
+  ⭐ ICON PLAYER ⭐
+</p>
+
+                    <div class="stats-number">Sohail Solid</div>
+                    <p class="text-yellow-100 mt-2 font-semibold">Team Captain</p>
+                    <p class="text-yellow-100/70 text-sm mt-1">Jersey #05 • Batsman</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Squad Section -->
+  <section id="squad" class="py-20 px-4 bg-black/50">
+    <div class="max-w-7xl mx-auto">
+
+        <!-- Title -->
+        <div class="text-center mb-16 scroll-reveal">
+            <h2 class="text-4xl md:text-5xl font-black mb-4">
+                Our <span class="gradient-text">Squad</span>
+            </h2>
+            <p class="text-gray-400 text-lg">15 warriors ready to take the field</p>
+            <div class="divider"></div>
+        </div>
+
+        <!-- 👑 OWNER SECTION  -->
+      <div class="flex justify-center w-full max-w-2xl  mx-auto mb-12 scroll-reveal">
+    <div class="bg-[#111] p-8 rounded-2xl text-center shadow-xl border border-yellow-500/30
+                hover:scale-105 transition duration-300">
+
+        <img src="images/owner.jpg"
+             class="w-32 h-32 rounded-full mx-auto object-cover border-4 border-yellow-500
+                    shadow-[0_0_25px_rgba(212,175,55,0.7)]">
+
+        <h3 class="text-white text-2xl font-bold mt-5">Shaikh Huzaif</h3>
+        <p class="text-yellow-400 text-base mt-1">👑 Founder & Owner</p>
+
+        <div class="mt-3 text-gray-400 text-sm">
+            Leading the team with vision & passion
+        </div>
+
+    </div>
+</div>
+
+        <!-- co-owner  -->
+      <div class="flex justify-center flex-wrap gap-6 mb-12 scroll-reveal">
+
+    <div class="bg-[#111] p-5 rounded-xl text-center shadow-lg border border-yellow-500/30 w-52">
+        <img src="images/albashCoOwner.jpg"
+             class="w-24 h-24 rounded-full mx-auto object-cover border-4 border-yellow-500 shadow-[0_0_20px_rgba(212,175,55,0.6)]">
+
+        <h3 class="text-white text-lg font-bold mt-3">ALBASH</h3>
+        <p class="text-yellow-400 text-sm">⭐ Co-Owner</p>
+    </div>
+
+    <div class="bg-[#111] p-5 rounded-xl text-center shadow-lg border border-yellow-500/30 w-52">
+        <img src="images/tohidCoOwner.jpg"
+             class="w-24 h-24 rounded-full mx-auto object-cover border-4 border-yellow-500 shadow-[0_0_20px_rgba(212,175,55,0.6)]">
+
+        <h3 class="text-white text-lg font-bold mt-3">Tohid Khan</h3>
+        <p class="text-yellow-400 text-sm">⭐ Co-Owner</p>
+    </div>
+
+</div>
+
+        <!-- Players Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 scroll-reveal" id="playerGrid">
+            <!-- Players will be dynamically inserted here -->
+        </div>
+
+    </div>
+</section>
+
+    <!-- Team Stats -->
+    <section id="stats" class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-4xl md:text-5xl font-black mb-4">
+                    Team <span class="gradient-text">Statistics</span>
+                </h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 scroll-reveal">
+             <!-- Wins -->
+    <div class="bg-gradient-to-br from-green-500/20 to-green-500/5 border border-green-500/30 rounded-2xl p-8 text-center hover:border-green-500/60 transition">
+        <i class="fas fa-trophy text-5xl text-green-500 mb-4"></i>
+        <div class="text-5xl font-black text-green-500">0</div>
+        <p class="text-xl text-gray-300 mt-2 font-semibold">Wins</p>
+        <p class="text-gray-400 text-sm mt-1">Match Victories</p>
+    </div>
+
+    <!-- Losses -->
+    <div class="bg-gradient-to-br from-red-500/20 to-red-500/5 border border-red-500/30 rounded-2xl p-8 text-center hover:border-red-500/60 transition">
+        <i class="fas fa-times-circle text-5xl text-red-500 mb-4"></i>
+        <div class="text-5xl font-black text-red-500">0</div>
+        <p class="text-xl text-gray-300 mt-2 font-semibold">Losses</p>
+        <p class="text-gray-400 text-sm mt-1">Defeats</p>
+    </div>
+
+                <div class="bg-gradient-to-br from-blue-500/20 to-blue-500/5 border border-blue-500/30 rounded-2xl p-8 text-center hover:border-blue-500/60 transition">
+                    <i class="fas fa-rocket text-5xl text-blue-500 mb-4"></i>
+                    <div class="text-5xl font-black text-blue-500">NEW</div>
+                    <p class="text-xl text-gray-300 mt-2 font-semibold">Franchise Status</p>
+                    <p class="text-gray-400 text-sm mt-1">Building Legacy</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Matches Section -->
+    <section id="matches" class="py-20 px-4 bg-black/50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-4xl md:text-5xl font-black mb-4">
+                    Upcoming <span class="gradient-text">Matches</span>
+                </h2>
+                <div class="divider"></div>
+            </div>
+<!--  match fixer code here  -->
+         <div class="match-card scroll-reveal">
+  <div class="flex flex-col md:flex-row items-center justify-between">
+    
+    <!-- Left Content -->
+    <div class="flex-1 mb-6 md:mb-0">
+      <p class="text-gray-400 text-sm uppercase tracking-widest mb-2">
+        Match - 1 
+      </p>
+
+      <h3 class="text-3xl md:text-4xl font-black mb-4">
+        Solid Defenders vs. Nepa Blasters
+      </h3>
+
+      <div class="flex flex-col sm:flex-row gap-4 text-lg">
+        
+        <!-- Location -->
+        <div class="flex items-center gap-2">
+          <i class="fas fa-map-marker-alt text-yellow-600"></i>
+          <span>B.S.A Cricket Club, Nehru Stadium</span>
+        </div>
+
+        <!-- Date -->
+        <div class="flex items-center gap-2">
+          <i class="fas fa-calendar text-yellow-600"></i>
+          <span>Date TBA</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Right Side -->
+    <div class="text-center">
+      <div class="text-6xl font-black gradient-text mb-4">VS</div>
+
+      <!-- Button -->
+      <a href="https://www.google.com/maps/place/B.S.A+CRICKET+CLUB+Nehru+Stadium/@21.309372,76.2204831,17z/data=!3m1!4b1!4m6!3m5!1s0x3bd8331f9220a993:0x8e1760198d2f7e42!8m2!3d21.309367!4d76.223058!16s%2Fg%2F11bzwnhcfp?entry=ttu&g_ep=EgoyMDI2MDQyOS4wIKXMDSoASAFQAw%3D%3D"
+         target="_blank"
+         class="btn-primary flex items-center justify-center gap-2">
+         
+         <i class="fas fa-map-marker-alt"></i>
+         Get Directions
+      </a>
+    </div>
+
+  </div>
+</div>
+  
+<!--  next match  -->
+   <div class="mt-8 match-card scroll-reveal">
+  <div class="flex flex-col md:flex-row items-center justify-between">
+    
+    <!-- Left Content -->
+    <div class="flex-1 mb-6 md:mb-0">
+      
+      <p class="text-gray-400 text-sm uppercase tracking-widest mb-2">
+        Match 2 - Season Clash
+      </p>
+
+      <h3 class="text-3xl md:text-4xl font-black mb-4">
+        Solid Defenders vs. TBD
+      </h3>
+
+      <div class="flex flex-col sm:flex-row gap-4 text-lg">
+        
+        <div class="flex items-center gap-2">
+          <i class="fas fa-map-marker-alt text-yellow-600"></i>
+          <span>B.S.A Cricket Club, Nehru Stadium</span>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <i class="fas fa-calendar text-yellow-600"></i>
+          <span>Date TBA</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Right Side -->
+    <div class="text-center">
+      
+      <div class="text-6xl font-black gradient-text mb-4">
+        VS
+      </div>
+
+      <!-- Button -->
+      <a href="https://www.google.com/maps/place/B.S.A+CRICKET+CLUB+Nehru+Stadium"
+         target="_blank"
+         class="btn-primary flex items-center justify-center gap-2">
+         
+         <i class="fas fa-map-marker-alt"></i>
+         Get Directions
+      </a>
+
+    </div>
+
+  </div>
+</div>
+
+            <div class="mt-12 p-8 bg-yellow-600/10 border border-yellow-600/30 rounded-xl text-center scroll-reveal">
+                <i class="fas fa-info-circle text-2xl text-yellow-600 mb-3 block"></i>
+                <p class="text-xl text-gray-300">
+                    Full schedule and match dates will be announced by <span class="font-bold text-yellow-600">After Match</span>. Stay tuned for an exciting inaugural season!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision Section -->
+    <section class="py-20 px-4">
+        <div class="max-w-4xl mx-auto text-center scroll-reveal">
+            <h2 class="text-4xl md:text-5xl font-black mb-8">
+                Our <span class="gradient-text">Mission</span>
+            </h2>
+            <div class="divider"></div>
+            
+            <div class="bg-gradient-to-r from-yellow-600/20 via-transparent to-yellow-600/20 border border-yellow-600/30 rounded-2xl p-12">
+                <p class="text-2xl md:text-3xl font-bold text-white leading-relaxed mb-6">
+                    "Defending Excellence. Building Legends. Bringing Pride to Burhanpur."
+                </p>
+                <p class="text-lg text-gray-300 leading-relaxed">
+                    Solid Defenders is more than a cricket team—we're ambassadors of skill, integrity, and pride. Every eagle in our crest represents the strength, vision, and dominance we bring to the field. This inaugural season marks the beginning of a golden era for local cricket.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+                <div class="p-8 bg-black/50 border border-yellow-600/20 rounded-xl hover:border-yellow-600/60 transition">
+                    <i class="fas fa-shield-alt text-4xl text-yellow-600 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Solid Defense</h3>
+                    <p class="text-gray-400">Impenetrable strategies and flawless execution</p>
+                </div>
+                <div class="p-8 bg-black/50 border border-yellow-600/20 rounded-xl hover:border-yellow-600/60 transition">
+                    <i class="fas fa-crown text-4xl text-yellow-600 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Royal Legacy</h3>
+                    <p class="text-gray-400">Building a championship tradition for generations</p>
+                </div>
+                <div class="p-8 bg-black/50 border border-yellow-600/20 rounded-xl hover:border-yellow-600/60 transition">
+                    <i class="fas fa-fire text-4xl text-yellow-600 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Fierce Spirit</h3>
+                    <p class="text-gray-400">Unstoppable passion on the field</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fan Club Section -->
+    <section id="join" class="py-20 px-4 bg-black/50">
+        <div class="max-w-2xl mx-auto text-center scroll-reveal">
+            <h2 class="text-4xl md:text-5xl font-black mb-4">
+                Join the <span class="gradient-text">Kingdom</span>
+            </h2>
+            <p class="text-gray-300 text-lg mb-12">Become part of Solid Defenders and witness cricket history in Burhanpur</p>
+            <div class="divider"></div>
+
+            <div class="bg-gradient-to-b from-yellow-600/20 to-yellow-600/5 border border-yellow-600/30 rounded-2xl p-12">
+                <form onsubmit="handleEmailSubmit(event)" class="flex flex-col gap-4">
+                    <input 
+                        type="email" 
+  id="userEmail"
+  placeholder="Enter your email address" 
+  class="email-input text-center"
+  required
+                    >
+                    <button type="submit" class="btn-primary text-lg w-full">
+                        <i class="fas fa-envelope mr-2"></i> Join the Fan Club
+                    </button>
+                </form>
+                
+                <div class="mt-8 pt-8 border-t border-yellow-600/20">
+                    <p class="text-gray-400 mb-6">Be part of the Solid Defenders family:</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-check text-yellow-600"></i>
+                            <span>Exclusive Match Updates</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-check text-yellow-600"></i>
+                            <span>VIP Fan Events</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-check text-yellow-600"></i>
+                            <span>Player Meet & Greets</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-check text-yellow-600"></i>
+                            <span>Early Ticket Access</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-red-500/20 py-12 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <i class="fas fa-eagle text-2xl text-yellow-600"></i>
+                        <span class="text-xl font-bold">Solid Defenders</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">Burhanpur's Pride. Defending Excellence. Season 1 Champions.</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#squad" class="hover:text-red-500 transition">Our Squad</a></li>
+                        <li><a href="#matches" class="hover:text-red-500 transition">Matches</a></li>
+                        <li><a href="#stats" class="hover:text-red-500 transition">Statistics</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Follow Us</h4>
+                    <div class="flex gap-4 text-gray-400">
+                        <a href="#" class="hover:text-red-500 transition"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="hover:text-red-500 transition"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/solid_defenders" class="hover:text-red-500 transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="hover:text-red-500 transition"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li>Email: info@soliddefenders.com</li>
+                        <li>Phone: +91 9753746668</li>
+                        <li>City: Burhanpur, MP</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-red-500/20 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center text-gray-400 text-sm">
+                    <p>&copy; 2026 Solid Defenders Cricket. All Rights Reserved.</p>
+                    <p>Created By Mehran Malik</p>
+
+                    <div class="flex gap-6 mt-4 md:mt-0">
+                        <a href="#" class="hover:text-red-500 transition">Privacy Policy</a>
+                        <a href="#" class="hover:text-red-500 transition">Terms of Service</a>
+                        <a href="#" class="hover:text-red-500 transition">Sponsorship</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+
+    <script>
+        // // Theme Management
+        // function setTheme(theme) {
+        //     const body = document.body;
+        //     const darkBtn = document.getElementById('darkThemeBtn');
+        //     const goldBtn = document.getElementById('goldThemeBtn');
+
+        //     if (theme === 'dark') {
+        //         body.classList.remove('gold-theme');
+        //         body.classList.add('dark-theme');
+        //         darkBtn.classList.add('active');
+        //         goldBtn.classList.remove('active');
+        //         localStorage.setItem('phoenixTheme', 'dark');
+        //     } else if (theme === 'gold') {
+        //         body.classList.remove('dark-theme');
+        //         body.classList.add('gold-theme');
+        //         goldBtn.classList.add('active');
+        //         darkBtn.classList.remove('active');
+        //         localStorage.setItem('phoenixTheme', 'gold');
+        //     }
+        // }
+
+        // Load saved theme on page load
+        // function loadSavedTheme() {
+        //     const savedTheme = localStorage.getItem('phoenixTheme') || 'dark';
+        //     setTheme(savedTheme);
+        // }
+
+        // Sample Players Data
+      const players = [
+  { name: "Sohail Solid (Captain)", role: "Batsman", price: "₹5000", jersey: "#05", img: "images/sohail.jpg" },
+  { name: "Zakir", role: "Batsman", price: "₹3300", jersey: "#07", img: "images/zakir.jpg" },
+  { name: "Chin2", role: "All-rounder", price: "₹1,900", jersey: "#10", img: "images/chintu.jpg" },
+  { name: "Azhar Owaisi", role: "Batsman", price: "₹1,100", jersey: "#12", img: "images/azhar.jpg" },
+  { name: "Shaikh Saif", role: "Batsman", price: "₹400", jersey: "#18", img: "images/saif.jpg" },
+  { name: "Shami", role: "Bowler", price: "₹400", jersey: "#21", img: "images/samee.jpg" },
+  { name: "Zahid Anjum", role: "All-rounder", price: "₹1,700", jersey: "#33", img: "images/zahid.jpg" },
+  { name: "Ikram Baba", role: "All-rounder", price: "₹1,100", jersey: "#09", img: "images/baba.jpg" },
+  { name: "Bhuru Khan ", role: "All-rounder", price: "₹700", jersey: "#14", img: "images/bhuru.jpg" },
+  { name: "Ab Rehman", role: "Bowler", price: "₹550", jersey: "#03", img: "images/rehman.jpg" },
+  { name: "Mehran Malik", role: "All-rounder", price: "₹400", jersey: "#08", img: "images/mehran.jpg" },
+  { name: "Shaik Adnan", role: "All-rounder", price: "₹1,100", jersey: "#11", img: "images/adnan.jpg" },
+  { name: "Mohammad Affan ", role: "Bowler", price: "₹700", jersey: "#17", img: "images/affan.jpg" },
+  { name: "Equu", role: "Batsman", price: "₹400", jersey: "#22", img: "images/ikku.jpg" },
+  { name: "Naeem Khan", role: "Bowler", price: "₹400", jersey: "#19", img: "images/naeem.jpg" }
+];
+
+        // Render Players
+        function renderPlayers() {
+            const grid = document.getElementById('playerGrid');
+            grid.innerHTML = players.map((player, index) => `
+                <div class="player-card" style="animation-delay: ${index * 0.05}s;">
+  <img 
+        src="${player.img}" 
+        alt="${player.name}" 
+        class="w-24 h-24 rounded-full mx-auto mb-4 border-2 border-yellow-500 object-cover"
+      />
+                    <h3 class="text-xl font-bold text-white">${player.name}</h3>
+                    <p class="text-gray-400 text-sm mt-1">${player.role}</p>
+                    <div class="badge">${player.price}</div>
+                </div>
+            `).join('');
+        }
+
+        // Scroll Reveal Animation
+        function observeElements() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.scroll-reveal').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Scroll to Section
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Email Submission code here 
+function handleEmailSubmit(e) {
+    e.preventDefault();
+
+    const email = e.target.querySelector('input[type="email"]').value;
+    const ownerEmail = "shaikhhuzi52@gmail.com";
+
+    const subject = "New Fan Joined - Solid Defenders";
+    const body = `🦅 New Fan Joined!\n\nFan Email: ${email}\n\nWelcome to Solid Defenders!`;
+
+    window.open(`mailto:${ownerEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
+
+    alert("✅ Your message is ready! Please click Send to complete.");
+    e.target.reset();
+}
+
+        // Toggle Mobile Menu
+        function toggleMenu() {
+            console.log('Menu toggled');
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // loadSavedTheme();
+            renderPlayers();
+            observeElements();
+        });
+
+        // Add scroll animation listener
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('.scroll-reveal:not(.active)').forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.75) {
+                    el.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
